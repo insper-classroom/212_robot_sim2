@@ -38,7 +38,7 @@ def processa(frame):
 
 
 
-def identifica_cor(frame):
+def identifica_cor(frame, cor_menor, cor_maior):
     '''
     Segmenta o maior objeto cuja cor é parecida com cor_h (HUE da cor, no espaço HSV).
     '''
@@ -49,8 +49,8 @@ def identifica_cor(frame):
     # do vermelho:
     frame_hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
 
-    cor_menor = np.array([180/2, 50, 50])
-    cor_maior = np.array([240/2, 255, 255])
+    #cor_menor = np.array([180/2, 50, 50])
+    #cor_maior = np.array([240/2, 255, 255])
     segmentado_cor = cv2.inRange(frame_hsv, cor_menor, cor_maior)
 
     #cor_menor = np.array([172, 50, 50])
@@ -66,8 +66,6 @@ def identifica_cor(frame):
     def cross(img_rgb, point, color, width,length):
         cv2.line(img_rgb, (point[0] - length//2, point[1]),  (point[0] + length//2, point[1]), color ,width, length)
         cv2.line(img_rgb, (point[0], point[1] - length//2), (point[0], point[1] + length//2),color ,width, length)
-
-
 
     # A operação MORPH_CLOSE fecha todos os buracos na máscara menores
     # que um quadrado 7x7. É muito útil para juntar vários
